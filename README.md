@@ -1,15 +1,15 @@
 # python-learn
 学习python过程中的一些小练习
 
-##任务三 ： 使用PyGTK与数据库实现用户登陆注册
+## 任务三 ： 使用PyGTK与数据库实现用户登陆注册
 
-###学习PyGTK
+### 学习PyGTK
  * 首先，找资料。发现一个较好的教程——“PyGTK教程（中文版）”。
  * 另外，对于一些GTK库函数的文档可以从<https://developer.gnome.org/pygtk/stable/index.html>找到。
  * 还有PyGTK官方教程地址：<http://www.pygtk.org/pygtk2tutorial/>
  
  
- ###完成效果
+ ### 完成效果
  **主界面**
  
  ![登陆界面](./img/login.png)
