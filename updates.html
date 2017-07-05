@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Updates Cts Files</title>
+</head>
+<body>
+
+<h1>Updates Cts Files</h1>
+
+<table>
+    <tr><th>File</th><th>Modify time</th></tr>
+    {% for file in files %}
+    <tr><td><a href='{{file.url}}'>{{file.name}}</a></td><td>{{file.modify_time}}</td></tr>
+    {% endfor %}
+</table>
+</body>
+</html>
