@@ -10,17 +10,17 @@ import logging
 
 from AsyncExecutor import async
 
-# 连接redis服务器
-r = redis.Redis(host='127.0.0.1', port=6379)
-r.flushall()
-
 HOST = "http://172.26.35.223"
 
 
 LOG_FORMAT = '%(asctime)s - %(filename)s[line:%(lineno)d] - %(threadName)s - %(levelname)s: %(message)s'
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
-INTERNAL_URL = 'internal_url'
+REDIS_KEY_INTERNAL_URL = 'internal_url'
+
+# 连接redis服务器
+r = redis.Redis(host='127.0.0.1', port=6379)
+r.delete(REDIS_KEY_INTERNAL_URL)
 
 
 class InternalSpider(object):
@@ -51,7 +51,7 @@ class InternalSpider(object):
     def get_url(self, url, layer):
         # 保存
         logging.info('save %d layer url:%s' % (layer - 1, url))
-        succeed = r.sadd(INTERNAL_URL, url)      # 添加到redis的集合中
+        succeed = r.sadd(REDIS_KEY_INTERNAL_URL, url)      # 添加到redis的集合中
 
         if not succeed:
             logging.info('duplicate %d layer url:%s' % (layer - 1, url))
@@ -111,7 +111,7 @@ def main():
     spider.get_url.join()
     logging.info(time() - s)
 
-    logging.info('saved %d urls!' % r.scard(INTERNAL_URL))
+    logging.info('saved %d urls!' % r.scard(REDIS_KEY_INTERNAL_URL))
 
 
 if __name__ == '__main__':
